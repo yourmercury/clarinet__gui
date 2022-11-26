@@ -1,6 +1,6 @@
 # Getting Started with Clarinet GUI
 
-## Available Scripts
+## Major Scripts
 
 In the project directory, you can run:
 
