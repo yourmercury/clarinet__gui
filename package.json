@@ -1,0 +1,70 @@
+{
+  "name": "gui",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "./",
+  "main": "electron.js",
+  "dependencies": {
+    "@craco/craco": "^6.4.5",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "autoprefixer": "^9.8.8",
+    "concurrently": "^7.5.0",
+    "cross-env": "^7.0.3",
+    "electron-squirrel-startup": "^1.0.0",
+    "fix-path": "^3.0.0",
+    "node-pty": "^0.10.1",
+    "node-pty-prebuilt-multiarch": "^0.10.1-pre.5",
+    "postcss": "^7.0.39",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "4.0.3",
+    "rebuild": "^0.1.2",
+    "shell-path": "^3.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
+    "wait-on": "^6.0.1",
+    "web-vitals": "^2.1.4",
+    "xterm": "^5.0.0"
+  },
+  "scripts": {
+    "start": "electron-forge start",
+    "start:dev": "concurrently \"cross-env BROWSER=none cross-env TAILWIND_MODE=watch craco start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "rebuild": "electron-rebuild",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.3",
+    "@electron-forge/maker-deb": "^6.0.3",
+    "@electron-forge/maker-rpm": "^6.0.3",
+    "@electron-forge/maker-squirrel": "^6.0.3",
+    "@electron-forge/maker-zip": "^6.0.3",
+    "@tailwindcss/forms": "^0.5.2",
+    "electron": "^21.2.2",
+    "electron-rebuild": "^3.2.9",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^5.0.0"
+  }
+}
