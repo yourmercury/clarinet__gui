@@ -7,6 +7,7 @@ import LightFonts from "./fonts/LightFonts";
 import Input from "./Input";
 import { ConsoleContext } from "../contexts/console.context";
 import { buildContractCallInput, driveThrough, parseSyntax, sendInput, validateInputCount } from "../helpers/inputParser";
+import copy from "./assets/copy.svg";
 
 export default function BoxOne() {
   const { addrs, contracts, setClarinetInput, clarinetInput, selectedAddr, setAddr, editable } = useContext(ConsoleContext);
@@ -81,7 +82,7 @@ export default function BoxOne() {
             ))}
           </DropdownInput>
         </div>
-        <div className={`my-[10px]`}>
+        <div className={`my-[10px] relative`}>
           <BoldFonts cls={`cursor-default`}>Contract</BoldFonts>
           <DropdownInput
             // value={selectedCont}
@@ -178,6 +179,7 @@ function ArgInput({ arg, setArgs, args, index, contracts }) {
     return (
       <div className={`my-[10px]`}>
         <LightFonts cls={`cursor-default`}>{arg.name}</LightFonts>
+        <LightFonts cls={`cursor-default text-[10px]`}>{type}</LightFonts>
         <Input placeholder={type} cls={"placeholder:text-[red]"} type={type == "uint"? "number": "text"} value={argg} withValue onChange={(e)=>{
           let value = e.target.value;
           args[index] = value.replaceAll(", ", " ");

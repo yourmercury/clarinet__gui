@@ -1,18 +1,13 @@
 import React from "react";
 import { useRef, useEffect, useState, useContext } from "react";
 import BoldFonts from "../fonts/BoldFonts";
-import ExtraLightFonts from "../fonts/ExtraLightFonts";
-import arrow_right from "../assets/Arrow_drop_right.svg";
-import arrow_down from "../assets/Arrow_drop_right_down.svg";
-import arrowRight from "../assets/Arrow_alt_lright.svg";
-import arrowLeft from "../assets/Arrow_alt_left.svg";
-import LightFonts from "../fonts/LightFonts";
+import copy from "../assets/copy.svg";
 import { ConsoleContext } from "../../contexts/console.context";
 import { AssetMap } from "./AssetAndMethods_old";
 
 export default function AssetsAndMethods() {
   const [active, setActive] = useState(0);
-  const { addrs } = useContext(ConsoleContext);
+  const { addrs, contracts } = useContext(ConsoleContext);
 
   return (
     <div
@@ -20,16 +15,22 @@ export default function AssetsAndMethods() {
     >
       <div className="w-full h-[15%] flex flex-col">
         <div className="flex justify-around flex-1 items-center">
-          <div onClick={()=>{
-            setActive(0)
-          }}>
+          <div
+            onClick={() => {
+              setActive(0);
+            }}
+          >
             <BoldFonts cls={`flex justify-center`}>Assets</BoldFonts>
           </div>
 
-          <div onClick={()=>{
-            setActive(1)
-          }}>
-            <BoldFonts cls={`flex justify-center`}>Tx Log</BoldFonts>
+          <div
+            onClick={() => {
+              setActive(1);
+            }}
+          >
+            <BoldFonts cls={`flex justify-center`}>
+              Contracts
+            </BoldFonts>
           </div>
         </div>
         <div
@@ -45,13 +46,30 @@ export default function AssetsAndMethods() {
           ></div>
         </div>
       </div>
-      <div className="h-[85%] overflow-y-scroll relative pb-[20px]">
+      <div className="h-[85%] overflow-y-scroll relative pb-[20px] p-5">
         {active == 0 && (
           <AssetMap active={active} setActive={setActive} addrs={addrs} />
         )}
         {active == 1 && (
-          <div className="flex justify-center h-full items-center">
-            <BoldFonts cls={`flex justify-center`}>Coming soon</BoldFonts>
+          <div className="flex flex-col h-full relative">
+            {contracts.list.map((contract, index) => {
+              return (
+                <div className="text-[white] text-[13px] relative w-fit py-1">
+                  {contract.split(".")[0].slice(0, 4) +
+                    "..." +
+                    contract.split(".")[0].slice(-4) +
+                    "." +
+                    contract.split(".")[1]}
+                  <img
+                    src={copy}
+                    className={`absolute w-[10px] right-[0px] bottom-[6px]`}
+                    onClick={async () => {
+                      navigator.clipboard.writeText(contract);
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
