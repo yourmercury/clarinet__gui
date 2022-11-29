@@ -4,6 +4,11 @@
 
 In the project directory, you can run:
 
+### `npm run rebuild`
+
+Rebuilds node-pty C packages for electron.\
+
+
 ### `npm run start:dev`
 
 Runs the app in the development mode.\
